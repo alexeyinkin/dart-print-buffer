@@ -1,0 +1,11 @@
+name: print_buffer_example
+publish_to: none
+
+environment:
+  sdk: '>=2.12.0 <4.0.0'
+
+dependencies:
+  print_buffer: { path: .. }
+
+dev_dependencies:
+  total_lints: ^3.4.0

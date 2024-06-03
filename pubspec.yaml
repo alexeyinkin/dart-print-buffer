@@ -1,0 +1,14 @@
+name: print_buffer
+description: Buffers the output of 'print' function and returns it as a string, optionally preprocesses each call.
+repository: https://github.com/alexeyinkin/dart-print-buffer.git
+version: 0.1.0
+
+environment:
+  sdk: '>=2.12.0 <4.0.0'
+
+dependencies:
+  clock: ^1.1.1
+
+dev_dependencies:
+  test: ^1.25.6
+  total_lints: ^3.4.0
