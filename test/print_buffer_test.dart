@@ -27,16 +27,34 @@ void main() {
     expect(exitCode, 0, reason: stderr);
     expect(stderr, '');
     expect(output.replaceAll(RegExp(r'\d{2}'), 'XX'), '''
-Start buffering unchanged
+Start buffering print
 Buffering paused
-End buffering unchanged
+End buffering print
 Buffered unchanged 1
 Buffered unchanged 2
 --
-Start buffering with timestamp
+Start buffering print with timestamp
+Not buffering or transforming stdout
 XXXX-XX-XX XX:XX:XXZ Buffering paused
 Buffering and transforming paused
-End buffering with timestamp
+End buffering print with timestamp
+XXXX-XX-XX XX:XX:XXZ Buffered with timestamp
+Buffered without timestamp
+--
+Start buffering print sync
+Sync result
+End buffering print sync
+Start buffering print async
+Async result
+End buffering print async
+Buffered sync
+Buffered async
+--
+Start buffering stdout with timestamp
+Not buffering or transforming print
+XXXX-XX-XX XX:XX:XXZ Buffering paused
+Buffering and transforming paused
+End buffering stdout with timestamp
 XXXX-XX-XX XX:XX:XXZ Buffered with timestamp
 Buffered without timestamp
 ''');

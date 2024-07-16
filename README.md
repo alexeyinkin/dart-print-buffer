@@ -2,17 +2,39 @@ Buffers the output of 'print' function.
 
 # Usage
 
-## Simple buffering
+## Simple buffering of `print`
 
 ```dart
 print('Start buffering');
 
 final buffer = PrintBuffer();
-await buffer.run(() {
+await buffer.overridePrint(() {
   print('Buffered');
 });
 
 print('End buffering');
+stdout.write(buffer.buffer);
+```
+
+Output:
+
+```
+Start buffering
+End buffering
+Buffered
+```
+
+## Simple buffering of `stdout`
+
+```dart
+stdout.writeln('Start buffering');
+
+final buffer = PrintBuffer();
+await buffer.overrideStdout(() {
+  stdout.writeln('Buffered');
+});
+
+stdout.writeln('End buffering');
 stdout.write(buffer.buffer);
 ```
 
@@ -30,7 +52,7 @@ Buffered
 print('Start buffering');
 
 final buffer = PrintBuffer();
-await buffer.run(() {
+await buffer.overridePrint(() {
   print('Buffered 1');
   buffer.isBuffering = false;
   print('Buffering paused');
@@ -64,7 +86,7 @@ final buffer = PrintBuffer(
   transformers: [utcDate, utcTimeSeconds],
 );
 
-await buffer.run(() {
+await buffer.overridePrint(() {
   print('Buffered with timestamp');
   buffer.isBuffering = false;
   print('Buffering paused');
